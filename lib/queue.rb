@@ -2,10 +2,10 @@ require 'pry'
 
 class Queue
 
-  attr_accessor :jobs, :input
+  attr_reader :jobs
 
   def initialize(input)
-    self.jobs = parse(input)
+    @jobs = parse(input)
     sanitize!
   end
 
@@ -20,8 +20,8 @@ class Queue
   end
 
   def sanitize!
-    self.jobs.flatten!
-    self.jobs -= [nil, ""]
+    @jobs.flatten!
+    @jobs -= [nil, ""]
   end
 
 end
