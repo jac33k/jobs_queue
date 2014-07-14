@@ -2,7 +2,7 @@ require 'queue'
 
 describe Queue do
 
-  describe '.parse' do
+  describe '#jobs' do
 
     context 'list of jobs given' do
       let(:input) { File.read('spec/fixtures/multiple_arguments.txt') }
