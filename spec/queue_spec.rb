@@ -3,10 +3,10 @@ require 'queue'
 describe Queue do
 
   describe '#jobs' do
+    subject { Queue.new(input).jobs }
 
     context 'list of jobs given' do
       let(:input) { File.read('spec/fixtures/multiple_arguments.txt') }
-      subject { Queue.new(input).jobs }
 
       it 'returns separated attributes' do
         expect(subject).to eq ['a', 'b', 'c']
@@ -14,7 +14,7 @@ describe Queue do
     end
 
     context 'single job given' do
-      subject { Queue.new("a => ").jobs }
+      let(:input) { File.read('spec/fixtures/single_argument.txt') }
 
       it 'returns one-element collection' do
         expect(subject).to eq ['a']
@@ -22,7 +22,7 @@ describe Queue do
     end
 
     context 'blank list given' do
-      subject { Queue.new("").jobs }
+      let(:input) { '' }
 
       it 'returns blank collection' do
         expect(subject).to eq []
