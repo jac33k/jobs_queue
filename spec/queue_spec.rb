@@ -29,5 +29,29 @@ describe Queue do
       end
     end
 
+    context 'list of jobs with dependencies given' do
+      let(:input) { File.read('spec/fixtures/multiple_arguments_with_dependencies2.txt') }
+
+      it 'returns ordered list' do
+        expect(subject).to eq ['f', 'c', 'b', 'e', 'a', 'd']
+      end
+    end
+
+    context 'list of jobs with self dependencies given' do
+      let(:input) { File.read('spec/fixtures/multiple_arguments_with_self_dependencies.txt') }
+
+      it 'raises an error' do
+        expect(subject).to raise_error
+      end
+    end
+
+    context 'list of jobs with circular dependencies given' do
+      let(:input) { File.read('spec/fixtures/multiple_arguments_with_circular_dependencies.txt') }
+
+      it 'raises an error' do
+        expect(subject).to raise_error
+      end
+    end
+
   end
 end
