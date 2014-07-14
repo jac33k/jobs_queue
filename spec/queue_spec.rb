@@ -16,5 +16,11 @@ describe Queue do
       end
     end
 
+    context 'blank list given' do
+      it 'returns blank collection' do
+        expect(Queue.parse("")).to eq []
+      end
+    end
+
   end
 end
