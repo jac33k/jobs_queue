@@ -3,14 +3,27 @@ require 'job'
 describe Job do
 
   describe '.build' do
-    let(:job) { double(:job, name: 'a') }
+    subject { Job.build(input) }
 
-    before do
-      allow(Job).to receive(:new) { job }
+    context 'without parent' do
+      let(:job) { double(:job, name: 'a') }
+      let(:input) { 'a' }
+
+      before do
+        allow(Job).to receive(:new) { job }
+      end
+
+      it 'returns collection of jobs' do
+        expect(subject).to eq [job]
+      end
     end
 
-    it 'returns collection of jobs' do
-      expect(Job.build('a')).to eq [job]
+    context 'with parent' do
+      let(:input) { 'a => b' }
+
+      it 'assigns parent correctly' do
+        expect(subject.first.parent).to eq "b"
+      end
     end
   end
 
