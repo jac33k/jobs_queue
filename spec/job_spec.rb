@@ -25,6 +25,13 @@ describe Job do
         expect(subject.first.parent).to eq "b"
       end
     end
+
+    context 'with any argument' do
+      let(:input) { '' }
+      it 'returns collection' do
+        expect(subject).to be_a_kind_of Collection
+      end
+    end
   end
 
   describe '#to_s' do
