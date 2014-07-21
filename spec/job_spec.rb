@@ -27,6 +27,17 @@ describe Job do
     end
   end
 
+  describe '.find' do
+    let(:job1) { double(:job, name: 'a') }
+    let(:job2) { double(:job, name: 'b') }
+    let(:list) { [job1, job2] }
+
+    it 'returns proper job' do
+      expect(Job.find('a', list)).to eq job1
+    end
+
+  end
+
   describe '#to_s' do
     subject { Job.new('awesome_stuff') }
 
