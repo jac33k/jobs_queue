@@ -33,7 +33,11 @@ describe Queue do
       let(:input) { File.read('spec/fixtures/multiple_arguments_with_dependencies2.txt') }
 
       it 'returns ordered list' do
-        expect(subject).to eq ['f', 'c', 'b', 'e', 'a', 'd']
+        expect(subject.index('f')).to be < subject.index('c')
+        expect(subject.index('c')).to be < subject.index('b')
+        expect(subject.index('b')).to be < subject.index('e')
+        expect(subject.index('a')).to be < subject.index('d')
+        expect(subject.uniq.size).to eq 6
       end
     end
 
