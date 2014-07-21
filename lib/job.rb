@@ -3,7 +3,7 @@ class Job
 
     def build(input)
       parse(input).map do |pair|
-        new(pair.first, pair.last)
+        new(pair.shift, pair.last)
       end
     end
 
