@@ -42,6 +42,14 @@ describe Job do
       it 'returns false' do
         expect(subject.has_parent?).to eq false
       end
+
+      context 'built via .build method' do
+        subject { Job.build('a') }
+
+        it 'returns false' do
+          expect(subject.first.has_parent?).to eq false
+        end
+      end
     end
 
     context 'with parent' do
