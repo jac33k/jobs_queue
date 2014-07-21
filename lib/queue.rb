@@ -18,7 +18,7 @@ class Queue
     sorted = []
 
     @jobs.each do |job|
-      if !sorted.find {|j| j.name == job.name}.nil?
+      if sorted.include?(job)
         parent = @jobs.find {|j| j.name == job.parent}
         index = sorted.index(job)
         sorted.insert(index, parent) unless parent.nil?
