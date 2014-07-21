@@ -35,4 +35,23 @@ describe Job do
     end
   end
 
+  describe '#has_parent?' do
+    context 'without parent' do
+      subject { Job.new('a') }
+
+      it 'returns false' do
+        expect(subject.has_parent?).to eq false
+      end
+    end
+
+    context 'with parent' do
+      subject { Job.new('a', 'b') }
+
+      it 'returns false' do
+        expect(subject.has_parent?).to eq true
+      end
+    end
+
+  end
+
 end
