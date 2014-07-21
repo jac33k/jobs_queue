@@ -1,14 +1,14 @@
+require 'collection'
+
 class Job
   class << self
 
     def build(input)
-      parse(input).map do |pair|
-        new(pair.shift, pair.last)
+      collection = Collection.new
+      parse(input).each do |pair|
+        collection << new(pair.shift, pair.last)
       end
-    end
-
-    def find(id, list)
-      list.find {|j| j.name == id}
+      collection
     end
 
     private
