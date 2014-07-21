@@ -41,7 +41,7 @@ describe Queue do
       let(:input) { File.read('spec/fixtures/multiple_arguments_with_self_dependencies.txt') }
 
       it 'raises an error' do
-        expect(subject).to raise_error
+        expect{ subject }.to raise_error
       end
     end
 
@@ -49,7 +49,7 @@ describe Queue do
       let(:input) { File.read('spec/fixtures/multiple_arguments_with_circular_dependencies.txt') }
 
       it 'raises an error' do
-        expect(subject).to raise_error
+        expect{ subject }.to raise_error
       end
     end
 
