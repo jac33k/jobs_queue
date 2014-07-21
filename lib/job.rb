@@ -28,4 +28,8 @@ class Job
   def to_s
     self.name.to_s
   end
+
+  def has_parent?
+    !parent.nil?
+  end
 end
