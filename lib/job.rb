@@ -7,6 +7,10 @@ class Job
       end
     end
 
+    def find(id, list)
+      list.find {|j| j.name == id}
+    end
+
     private
 
     def parse(input)

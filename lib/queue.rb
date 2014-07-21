@@ -19,11 +19,11 @@ class Queue
 
     @jobs.each do |job|
       if sorted.include?(job)
-        parent = @jobs.find {|j| j.name == job.parent}
+        parent = Job.find(job.parent, @jobs)
         index = sorted.index(job)
         sorted.insert(index, parent) unless parent.nil?
       elsif !sorted.find {|j| j.name == job.parent}.nil?
-        parent = @jobs.find {|j| j.name == job.parent}
+        parent = Job.find(job.parent, @jobs)
         index = sorted.index(parent)
         sorted.insert(index + 1, job)
       else
