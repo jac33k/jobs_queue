@@ -3,8 +3,7 @@ require "job"
 class Queue
 
   def initialize(input)
-    @jobs = Job.build(input)
-    sort!
+    @jobs = Job.build(input).sort!
     validate
   end
 
@@ -13,26 +12,6 @@ class Queue
   end
 
   private
-
-  def sort!
-    sorted = []
-
-    @jobs.each do |job|
-      if sorted.include?(job)
-        parent = Job.find(job.parent, @jobs)
-        index = sorted.index(job)
-        sorted.insert(index, parent) unless parent.nil?
-      elsif !sorted.find {|j| j.name == job.parent}.nil?
-        parent = Job.find(job.parent, @jobs)
-        index = sorted.index(parent)
-        sorted.insert(index + 1, job)
-      else
-        sorted << @jobs.find{|j| j.name == job.parent } if job.has_parent?
-        sorted << job
-      end
-    end
-    @jobs = sorted
-  end
 
   def validate
     validate_circular_dependencies
