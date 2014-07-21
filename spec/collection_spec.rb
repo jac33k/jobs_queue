@@ -12,9 +12,9 @@ describe Collection do
   end
 
   describe '#sort!' do
-    let(:job1) { Job.new('a') }
-    let(:job2) { Job.new('b', 'c') }
-    let(:job3) { Job.new('c') }
+    let(:job1) { double(:job, name: 'a', parent: nil, has_parent?: false) }
+    let(:job2) { double(:job, name: 'b', parent: 'c', has_parent?: true) }
+    let(:job3) { double(:job, name: 'c', parent: nil, has_parent?: false) }
 
     subject { Collection.new([job1, job2, job3]).sort! }
 
